@@ -1,7 +1,9 @@
 from transformers import BertTokenizer, BertModel
 from sklearn.metrics.pairwise import cosine_similarity
+# from gingerit.gingerit import GingerIt
 import numpy as np
 import torch
+import spacy
 
 def get_sentence_embeddings(sentences):
 
@@ -28,14 +30,14 @@ def get_sentence_embeddings(sentences):
 
 
 #example usage
-sentences = [
-    "A transformer is a deep learning architecture introduced in the 'Attention is All You Need' paper. It's used for sequence-to-sequence tasks in natural language processing, leveraging self-attention mechanisms to capture contextual relationships",
-    # "Here is another sentence"
-    # "is this the first sentence"
-    "A transformer is a type of deep learning architecture designed for sequence processing tasks. Unlike traditional recurrent neural networks, it utilizes self-attention mechanisms to capture contextual dependencies, enabling more effective modeling of long-range dependencies in sequences."
-]
+# sentences = [
+#     "A transformer is a deep learning architecture introduced in the 'Attention is All You Need' paper. It's used for sequence-to-sequence tasks in natural language processing, leveraging self-attention mechanisms to capture contextual relationships",
+#     # "Here is another sentence"
+#     # "is this the first sentence"
+#     "A transformer is a type of deep learning architecture designed for sequence processing tasks. Unlike traditional recurrent neural networks, it utilizes self-attention mechanisms to capture contextual dependencies, enabling more effective modeling of long-range dependencies in sequences."
+# ]
 
-embeddings = get_sentence_embeddings( sentences )
+# embeddings = get_sentence_embeddings( sentences )
 
 
 # for i, embedding in enumerate(embeddings):
@@ -55,8 +57,64 @@ def get_similarity( vect1, vect2 ):
 
 
 
-print( get_similarity(embeddings[0], embeddings[1] ))
+# print( get_similarity(embeddings[0], embeddings[1] ))
+
+# def get_GrammerScore( sentence ):
+    
+#    #Create an instance of GingerIt() -> [ The gingerit package in Python is a wrapper for the Ginger Software API, which is a grammar and spell checker.]
+#    parser = GingerIt()
+  
+#    result =  parser.parse(sentence)
 
 
+def get_keyPointsScore( question, Answer ):
 
-     
+    # load the spacy model
+    model = spacy.load("en_core_web_sm")
+
+    # pass the quesion to the model and get the ouput as doc
+    que_doc = model(question)
+    
+    # Extract named Entities from the question
+    Named_entities_in_ques = [ ent.text  for ent in que_doc.ents ]
+
+    #Extract keywords using dependency parsing 
+
+    # Subjects (nsubj): These would be words acting as the subjects in the sentence.
+    # Direct Objects (dobj): Words that are directly receiving the action of the verb.
+    # Prepositional Objects (pobj): Words that follow prepositions and act as the object of that preposition.
+    question_keywords = [ token.text for token in que_doc if token.dep_ in ('nsubj', 'dobj', 'pobj')]
+    
+    # Extract noun phrases
+    noun_phrases_in_ques = [ chunk.text for chunk in que_doc.noun_chunks ]
+    
+    # combine all three and now try to find  this set in answer as well 
+    que_keyPoints = set( Named_entities_in_ques + question_keywords + noun_phrases_in_ques )
+
+    # Run model for answer as well
+    answer_doc = model(Answer)
+
+    # Extract named entities from the answer
+    Named_entities_in_ans = [ ent.text for ent in answer_doc.ents ]
+
+    #Extracting keywords and noun phrases
+    ans_keywords = [token.text for token in answer_doc if token.dep_ in ('nsubj', 'dobj', 'pobj')]
+    noun_phrases_in_ans = [chunk.text for chunk in answer_doc.noun_chunks]
+
+    # combine all three of them 
+    answer_points = set( Named_entities_in_ans + ans_keywords + noun_phrases_in_ans )
+
+
+    # cclculate number of key points coverd in the answer
+
+    covered_points =  que_keyPoints.intersection( answer_points )
+    coverage_score = len( covered_points) / len(que_keyPoints)
+
+    return coverage_score
+
+
+# Question = "Explain the principles of supply and demand in economics."
+
+# Answer =  "Supply and demand are basic economic principles that determine the price and quantity of goods in the market. These principles are influenced by factors such as consumer preferences, production costs, and market competition."
+
+# print( get_keyPointsScore( Question, Answer ))
