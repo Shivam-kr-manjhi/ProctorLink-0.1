@@ -1,9 +1,11 @@
-from transformers import BertTokenizer, BertModel
+from transformers import BertTokenizer, BertModel 
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
 from sklearn.metrics.pairwise import cosine_similarity
 # from gingerit.gingerit import GingerIt
 import numpy as np
 import torch
 import spacy
+import math
 
 def get_sentence_embeddings(sentences):
 
@@ -113,8 +115,70 @@ def get_keyPointsScore( question, Answer ):
     return coverage_score
 
 
-# Question = "Explain the principles of supply and demand in economics."
 
-# Answer =  "Supply and demand are basic economic principles that determine the price and quantity of goods in the market. These principles are influenced by factors such as consumer preferences, production costs, and market competition."
 
-# print( get_keyPointsScore( Question, Answer ))
+
+def map_perplexity_to_score(perplexity):
+
+    if perplexity <= 1:
+        return 1.0
+    elif perplexity <= 20:
+        return 1.0 - ((perplexity - 1)*(0.1)) / 20  # Linear interpolation between 1.0 and 0.9
+    elif perplexity <= 50:
+        return 0.9 - ((perplexity - 20)*(0.1)) / 30  # Linear interpolation between 0.9 and 0.8
+    elif perplexity <= 70:
+        return 0.8 - ((perplexity - 50)*(0.1)) / 20  # Linear interpolation between 0.8 and 0.7
+    elif perplexity <= 90:
+        return 0.7 - ((perplexity - 70)*(0.1)) / 20  # Linear interpolation between 0.7 and 0.6
+    elif perplexity <= 120:
+        return 0.6 - ((perplexity - 90)*(0.1)) / 20  # Linear interpolation between 0.6 and 0.5
+    elif perplexity <= 140:
+        return 0.5 - ((perplexity - 120)*(0.1)) / 20  # Linear interpolation between 0.5 and 0.4
+    elif perplexity <= 160:
+        return 0.4 - ((perplexity - 140)*(0.1))/ 20  # Linear interpolation between 0.4 and 0.3
+    elif perplexity <= 180:
+        return 0.3 - ((perplexity - 160)*(0.1)) / 20  # Linear interpolation between 0.3 and 0.2
+    elif perplexity <= 200:
+        return 0.2 - ((perplexity - 180)*(0.1)) / 20  # Linear interpolation between 0.2 and 0.1
+    elif perplexity <= 220:
+        return 0.1 - ((perplexity - 200)*(0.1)) / 20  # Linear interpolation between 0.1 and 0.0
+    else:
+        return 0.0  # Scores less than 50 perplexity
+    
+
+
+def get_perplexityScore( sentence ):
+   
+   # Load pretrained model and tokenizer
+   model_name = 'gpt2'
+   model = GPT2LMHeadModel.from_pretrained(model_name)
+   tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+
+
+   # ensure model is in evaluation mode
+   model.eval()
+
+   # tokenize the text
+   inputs = tokenizer( sentence, return_tensors = 'pt')
+
+   # get input ids and length
+   input_ids = inputs['input_ids']
+   length = input_ids.size(1)
+
+
+   # compute loss ( negative log likelihood )
+   with torch.no_grad():
+       outputs = model( input_ids, labels=input_ids )
+       loss = outputs.loss
+
+   perplexity = math.exp(loss.item())
+
+#    print(perplexity)
+   
+   # formate upto one decimal place only 
+   score = map_perplexity_to_score(perplexity)
+
+   return score
+
+
+# print(get_perplexityScore(userAnswer))
