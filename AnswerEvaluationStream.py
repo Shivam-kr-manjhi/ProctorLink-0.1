@@ -1,6 +1,7 @@
 from transformers import BertTokenizer, BertModel 
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 from sklearn.metrics.pairwise import cosine_similarity
+import language_tool_python
 # from gingerit.gingerit import GingerIt
 import numpy as np
 import torch
@@ -48,8 +49,14 @@ def get_sentence_embeddings(sentences):
 # print(embeddings.shape)
 
 
-def get_similarity( vect1, vect2 ):
+def get_similarityScore( UserAnswer, ExpectedAnswer ):
     
+    sentences = [ UserAnswer, ExpectedAnswer ]
+    embeddings = get_sentence_embeddings( sentences )
+
+    vect1 = embeddings[0]
+    vect2 = embeddings[1]
+
     vect1 = np.array(vect1).reshape(1,-1)
     vect2 = np.array(vect2).reshape(1,-1)
 
@@ -182,3 +189,50 @@ def get_perplexityScore( sentence ):
 
 
 # print(get_perplexityScore(userAnswer))
+
+
+
+def get_grammerScore( sentence ):
+    
+    # Initialize LanguageTool for English 
+
+    # The tool parses the sentence and applies a wide range of linguistic rules and patterns to identify potential errors. These rules cover grammatical correctness, spelling mistakes, punctuation issues, and stylistic suggestions.
+    tool = language_tool_python.LanguageTool('en-US')
+
+    # Details of matches
+    # Each element in the matches list is a Match object, which contains the following attributes:
+
+    # fromy and fromx: The starting position (line and character) of the error in the sentence.
+    # toy and tox: The ending position (line and character) of the error in the sentence.
+    # ruleId: The ID of the rule that identified the error.
+    # message: A description of the error and how to fix it.
+    # replacements: Suggested corrections for the error.
+    # offset: The character offset of the error in the sentence.
+    # length: The length of the error in characters.
+    # context: The context around the error, useful for understanding the mistake.
+    # contextoffset: The offset of the error within the context.
+    # sentence: The full sentence that was checked.
+
+    match = tool.check( sentence )
+    
+    num_errors = len( match )
+    num_words = len(sentence.split())
+
+
+    # Erro rate per word
+    error_rate = num_errors / num_words if num_words > 0 else 0
+
+    # Normalize the score: lower error rate means higher score
+    # Assuming a maximum error rate of 1 error per word (which is very high)
+    normalized_score = max(0, 1 - error_rate)
+    
+    return normalized_score
+
+
+
+# good_sentence = "The quick brown fox jumps over the lazy dog."
+# bad_sentence = "Fox brown quick the jumps dog lazy over the."
+
+# print( get_grammerScore(bad_sentence))
+
+    
