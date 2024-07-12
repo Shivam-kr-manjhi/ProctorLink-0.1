@@ -1,5 +1,4 @@
 
-# apikey = "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"
 # InferenceClient is  used for direct communication with huggingface inference API's
 #  HuggingFaceHub's funtion like 
 #         hub = HuggingFaceHub(
