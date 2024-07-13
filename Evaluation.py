@@ -81,11 +81,11 @@ def get_score( questions, UserAnswers , number_of_questions ):
 
     eval = {
 
-        'TotalScore' : TotalScore,
-        'Readability' : AvgReadabilityScore,
-        'Currectness' : AvgCurrectnessScore,
-        'keyPointsCovered' : AvgkeyPointsCovered,
-        'GrammerScore' : AvgGrammerScore
+        'TotalScore' : round(TotalScore,2),
+        'Readability' : round(AvgReadabilityScore,2),
+        'Currectness' : round(AvgCurrectnessScore,2),
+        'keyPointsCovered' : round(AvgkeyPointsCovered,2),
+        'GrammerScore' : round(AvgGrammerScore,2)
     }
 
     return eval
