@@ -1,5 +1,5 @@
-import Evaluation as Eval
-import llm as llm
+from Evaluation import get_score
+from llm import get_questions
 
 answer=[]
 
@@ -16,6 +16,8 @@ def getans():
     return answer
 
 def getEvaluation():
-    evals = Eval.get_score( llm.questions, answer, 5 )
+    # print("**************************************************")
+    questions = get_questions()
+    evals = get_score( questions, answer, 5 )
     print("***********************************" , evals ,"******************************************************")
     return evals

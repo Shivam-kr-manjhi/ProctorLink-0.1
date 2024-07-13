@@ -18,6 +18,12 @@ def askQA(index):
     return questions[int(index)]
 
 
+
+def get_questions():
+    global questions
+    return questions
+
+
 # you write all your code here
 
 # just make sure that you have the above askQA function always so that it can be fetched
