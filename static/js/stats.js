@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             console.log('Array of strings:', data);
+            
             stat.textContent=data[0];
             // You can process the array of strings here
         })

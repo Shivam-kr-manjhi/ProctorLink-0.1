@@ -55,4 +55,13 @@ def get_score( questions, UserAnswers , number_of_questions ):
         TotalScore += CurrAnswerEVAl
 
 
-    print(TotalScore)   
+    eval = {
+
+        'TotalScore' : TotalScore,
+        'Currectness' : SimilarityScore,
+        'keyPointsCovered' : keyPointsScore,
+        'GrammerScore' : GrammerScore
+    }
+
+
+    return eval
