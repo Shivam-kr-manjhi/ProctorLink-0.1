@@ -1,0 +1,268 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+:root{
+    --blue1 :#A7E6FF;
+    --blue2 :#3ABEF9;
+    --blue3 :#3572EF;
+    --blue4 :#050C9C;
+}
+.container {
+    /* width: 80%; */
+    /* max-width: 600px; */
+    /* background-color: #f0f0f0; */
+    border-radius: 10px;
+    padding: 20px;
+    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 2rem 1rem;
+    display: grid;
+    gap: 2rem;
+    text-align: center;
+}
+
+.topright {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 120px;
+    height: 90px;
+    overflow: hidden;
+    display: none;
+}
+
+#video {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.upper{
+    /* background-color: rgb(113, 113, 255); */
+    /* color: white; */
+    border-radius: 1.5rem;
+    width :100%;
+    font-size: xx-large;
+    /* font-weight:bold; */
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.lower{
+    border: 2px solid var(--blue3) ;
+    width :100%;
+    font-size: xx-large;
+    font-weight:bold;
+    padding: 1rem;
+    margin-bottom: 2rem;
+
+}
+.ans{
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 8rem;
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+
+    color: gray;
+}
+.btn button{
+    background-color: var(--blue3);
+    border: none;
+    color: white;
+    font-weight: bolder;
+    font-size: larger;
+    padding: 0.5rem 1rem;
+    margin: 0 1rem 1rem 1rem;
+
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.btn button:hover{
+    background-color: white;
+    color: var(--blue3);
+    font-weight: bolder;
+    font-size: larger;
+    padding: 0.5rem 1rem;
+    margin: 0 1rem 1rem 1rem;
+    cursor: pointer;
+
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+.btn button:active{
+    background-color: var(--blue3);
+    /* border: none; */
+    border-radius: 2rem;
+    color: white;
+    font-weight: bolder;
+    font-size: larger;
+    padding: 0.5rem 1rem;
+    margin: 0 1rem 1rem 1rem;
+
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+/*-----------------------------------*/
+
+
+
+#popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect for glassmorphism */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#get_subject_block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect for glassmorphism */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+
+
+#popup-content , .subject_block  {
+    background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white background */
+    max-width: 600px; /* Maximum width for the popup */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+}
+
+#input_subject{
+    margin: 20px;
+    height: 40px;
+    width: 70%;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+
+
+
+#popup-content h2 {
+    margin-top: 0;
+}
+
+#popup-content p {
+    margin-bottom: 20px;
+}
+
+#popup-content button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#popup-content #start-button {
+    background-color: var(--blue1);
+    /* border : 1px solid red; */
+    color: black;
+    font-size: medium;
+}
+
+#popup-content #cancel-button {
+    background-color: #101820FF;
+    color: white;
+}
+
+#main-content {
+    display: none;
+    padding: 20px;
+}
+/*----------------------------------------------------------------*/
+
+#popup-close {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect for glassmorphism */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#popup-close-content {
+    background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white background */
+    
+    max-width: 600px; /* Maximum width for the popup */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+}
+
+#popup-close-content h2 {
+    margin-top: 0;
+}
+
+
+#popup-close-content button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#popup-close-content #exit {
+    background-color: var(--blue1);
+    color: black;
+}
+
+#popup-close-content #stay {
+    background-color: black;
+    color: white;
+}
+
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webcam Photo Capture</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/proctor.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+</head>
+
+<body>
+  <nav>
+    <div class="nav__logo">
+      <div>PROCTOR</div>LY
+
+    </div>
+    <ul class="nav__socials">
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <a href="#">About Us</a>
+      </li>
+      <li>
+        <a href="#">Partners</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="popup">
+    <div id="popup-content">
+        <h2>Instructions</h2>
+        <p>Please read the instructions carefully before proceeding.<br>
+          Please read the instructions carefully before proceeding.<br>
+          Please read the instructions carefully before proceeding.<br>
+          Please read the instructions carefully before proceeding.<br>
+          Please read the instructions carefully before proceeding.<br>
+          Please read the instructions carefully before proceeding.<br>
+          Please read the instructions carefully before proceeding.</p>
+        <button id="start-button">Start</button>
+        <button id="cancel-button">Cancel</button>
+    </div>
+  </div>
+
+
+  <div id="get_subject_block" >
+       <div class="subject_block">
+        <h2>provide your subject to test</h2>
+        <input type="text" id="input_subject" placeholder="Write your subject">
+        <button id="input_subject_btn">Submit</button>
+       </div> 
+  </div>
+
+
+  <div id="popup-close">
+    <div id="popup-close-content">
+        <h2>Confirm exit</h2>
+        <button id="exit">EXIT</button>
+        <button id="stay">STAY</button>
+    </div>
+  </div>
+
+
+
+  <div class="container" id="main-content">
+
+    <div class="topright">
+      <video id="video" autoplay></video>
+    </div>
+
+    <div class="center">
+      <div class="upper">
+        <p id="question">
+          Please read the instructions carefully before proceeding.
+        </p>
+      </div>
+      <div class="lower">
+        <textarea class="ans" id="answer" placeholder="Write your Response" spellcheck="false" ></textarea>
+      </div>
+      <div class="btn">
+        <button id="end">End</button>
+        <button id="nextButton">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/proctor.js') }}"></script>
+</body>
+
+</html>

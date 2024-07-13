@@ -11,7 +11,7 @@ from huggingface_hub import InferenceClient
 from langchain.prompts import PromptTemplate
 
 
-
+os.environ["HuggingFace_API_KEY"] = "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"
 # huggingface api key is environmented privately
 API_KEY =  os.environ.get('HuggingFace_API_KEY')
 # print(API_KEY)
