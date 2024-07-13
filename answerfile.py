@@ -16,8 +16,6 @@ def getans():
     return answer
 
 def getEvaluation():
-    # print("**************************************************")
     questions = get_questions()
     evals = get_score( questions, answer, 5 )
-    print("***********************************" , evals ,"******************************************************")
     return evals

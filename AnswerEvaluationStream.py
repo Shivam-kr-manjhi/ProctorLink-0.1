@@ -181,8 +181,6 @@ def get_perplexityScore( sentence ):
        loss = outputs.loss
 
    perplexity = math.exp(loss.item())
-
-   print(perplexity)
    
    # formate upto one decimal place only 
    score = map_perplexity_to_score(perplexity)

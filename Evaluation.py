@@ -37,8 +37,6 @@ def get_score( questions, UserAnswers , number_of_questions ):
     AvgCurrectnessScore = 0
     AvgGrammerScore = 0
 
-
-    print("1")
     itr = 1
 
     for i in range( number_of_questions ):
@@ -90,5 +88,4 @@ def get_score( questions, UserAnswers , number_of_questions ):
         'GrammerScore' : AvgGrammerScore
     }
 
-    print("kjwnkejfnooeirjglklrkslkgkemrklgomlkenmrlkmg")
     return eval
