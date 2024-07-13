@@ -29,39 +29,66 @@ questions =  LLM.getQuestions( "object oreinted programming" , 3 )
 #     print("\n\n\n\n\n\n\n\n")
 
 def get_score( questions, UserAnswers , number_of_questions ):
-    
+   
     ModelAnswers = LLM.getAnswers( questions )
-    UserAnswers = ModelAnswers
-
     TotalScore = 0
+    AvgkeyPointsCovered = 0
+    AvgReadabilityScore = 0
+    AvgCurrectnessScore = 0
+    AvgGrammerScore = 0
+
+
+    print("1")
+    itr = 1
 
     for i in range( number_of_questions ):
         
         #  get  similarity score
         SimilarityScore = EVAL.get_similarityScore( UserAnswer=UserAnswers[i] , ExpectedAnswer=ModelAnswers[i] )
+        AvgCurrectnessScore += SimilarityScore
+        
 
         # get perplexityscore
         PerplexityScore = EVAL.get_perplexityScore( UserAnswers[i] )
+        AvgReadabilityScore += PerplexityScore
 
         # get get_keyPointsScore score
         keyPointsScore = EVAL.get_keyPointsScore( question= questions[i] , Answer=UserAnswers[i] )
+        AvgkeyPointsCovered += keyPointsScore
 
         # get Grammer score
         GrammerScore = EVAL.get_grammerScore( UserAnswers[i] )
+        AvgGrammerScore += GrammerScore
 
         CurrAnswerEVAl =  (SimilarityScore * Similarity_parameter) + (PerplexityScore * perplexity_parameter) + (keyPointsScore * keyPoint_parameter) + (GrammerScore * Grammer_parameter)
 
 
         TotalScore += CurrAnswerEVAl
 
+        print(f"{itr} iteration completed")
+        itr = itr+1
+
+    print("2")
+
+    AvgReadabilityScore /= number_of_questions
+    AvgkeyPointsCovered /= number_of_questions
+    AvgCurrectnessScore /= number_of_questions
+    AvgGrammerScore /= number_of_questions
+
+    print( "TotalScore - > " ,TotalScore  )
+    print( 'Readability - >' , AvgReadabilityScore )
+    print( 'Currectness - >' , AvgCurrectnessScore )
+    print( 'keyPointsCovered - >', AvgkeyPointsCovered  )
+    print( 'GrammerScore - >' , AvgGrammerScore  )
 
     eval = {
 
         'TotalScore' : TotalScore,
-        'Currectness' : SimilarityScore,
-        'keyPointsCovered' : keyPointsScore,
-        'GrammerScore' : GrammerScore
+        'Readability' : AvgReadabilityScore,
+        'Currectness' : AvgCurrectnessScore,
+        'keyPointsCovered' : AvgkeyPointsCovered,
+        'GrammerScore' : AvgGrammerScore
     }
 
-
+    print("kjwnkejfnooeirjglklrkslkgkemrklgomlkenmrlkmg")
     return eval

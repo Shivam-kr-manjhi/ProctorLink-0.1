@@ -62,10 +62,11 @@ def get_similarityScore( UserAnswer, ExpectedAnswer ):
 
     similarity = cosine_similarity( vect1, vect2 )
 
-    return similarity
+    return similarity[0][0]
 
 
 
+# print( get_similarityScore(" i'm good what about you" , " I'm fine how are you"))
 # print( get_similarity(embeddings[0], embeddings[1] ))
 
 # def get_GrammerScore( sentence ):
@@ -122,6 +123,7 @@ def get_keyPointsScore( question, Answer ):
     return coverage_score
 
 
+# print( get_keyPointsScore("how are you?", "i'm fine what about you"))
 
 
 
@@ -180,7 +182,7 @@ def get_perplexityScore( sentence ):
 
    perplexity = math.exp(loss.item())
 
-#    print(perplexity)
+   print(perplexity)
    
    # formate upto one decimal place only 
    score = map_perplexity_to_score(perplexity)
@@ -188,7 +190,7 @@ def get_perplexityScore( sentence ):
    return score
 
 
-# print(get_perplexityScore(userAnswer))
+# print(get_perplexityScore("Data science is a multidisciplinary field that uses scientific methods, processes, algorithms, and systems to extract knowledge and insights from structured and unstructured data. It combines aspects of statistics, computer science, and domain expertise to analyze data and make data-driven decisions"))
 
 
 
