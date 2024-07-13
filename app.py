@@ -3,7 +3,7 @@ import base64,os
 from datetime import datetime
 from face_dtect import count_faces
 from llm import askQA , insert_subject
-from answerfile import reset,insert,getans
+from answerfile import reset,insert,getans,getEvaluation
 
 ques_index=0
 app  = Flask(__name__)
@@ -93,6 +93,11 @@ def receive_subject():
     insert_subject(text)
     print("this is the subject  -> " , text)
     return jsonify({'message': 'Text received successfully!'})
+
+@app.route('/getresult')
+def results():
+    data = getEvaluation()
+    return jsonify(data)
 
 
 if __name__ == "__main__":
