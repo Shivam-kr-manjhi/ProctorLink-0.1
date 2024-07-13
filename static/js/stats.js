@@ -1,12 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // URL of the Flask server endpoint
     const url = '/getresult';
+    const loading = document.getElementById('loading');
+    const statsContainer = document.getElementById('statscontainer');
 
     // Fetch data from the server
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            const statsContainer = document.getElementById('statscontainer');
+            // Hide the loading indicator
+            loading.style.display = 'none';
+
+            // Show the stats container
+            statsContainer.style.display = 'flex';
 
             // Iterate over the dictionary keys and values
             Object.entries(data).forEach(([key, value]) => {
@@ -27,5 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 statsContainer.appendChild(statDiv);
             });
         })
-        .catch(error => console.error('Error fetching data:', error));
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            loading.textContent = 'Error loading data.';
+        });
 });
