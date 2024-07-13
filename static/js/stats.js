@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const url = '/getresult';
-    const loading = document.getElementById('load');
+    const loading = document.getElementById('loading');
     const statsContainer = document.getElementById('statscontainer');
 
     // Fetch data from the server
