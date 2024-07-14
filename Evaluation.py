@@ -80,12 +80,11 @@ def get_score( questions, UserAnswers , number_of_questions ):
     print( 'GrammerScore - >' , AvgGrammerScore  )
 
     eval = {
-
-        'TotalScore' : round(TotalScore,2),
-        'Readability' : round(AvgReadabilityScore,2),
-        'Currectness' : round(AvgCurrectnessScore,2),
-        'keyPointsCovered' : round(AvgkeyPointsCovered,2),
-        'GrammerScore' : round(AvgGrammerScore,2)
+        'TotalScore' : round(TotalScore/5,2),
+        'Readability' : round(AvgReadabilityScore*100,2),
+        'Currectness' : round(AvgCurrectnessScore*100,2),
+        'keyPointsCovered' : round(AvgkeyPointsCovered*100,2),
+        'GrammerScore' : round(AvgGrammerScore*100,2)
     }
 
     return eval
