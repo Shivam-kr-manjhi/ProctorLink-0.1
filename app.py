@@ -2,7 +2,7 @@ from flask import Flask,render_template,request,jsonify
 import base64,os
 from datetime import datetime
 from face_dtect import count_faces
-from llm import askQA , insert_subject
+from llm import askQA , insert_subject ,get_questions
 from answerfile import reset,insert,getans,getEvaluation
 
 ques_index=0
@@ -98,6 +98,11 @@ def receive_subject():
 def results():
     data = getEvaluation()
     return jsonify(data)
+
+@app.route('/getques')
+def waiter():
+    ques = get_questions()
+    return jsonify(ques)
 
 
 if __name__ == "__main__":
