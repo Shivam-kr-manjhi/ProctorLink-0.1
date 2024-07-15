@@ -224,6 +224,7 @@ function sendSubject(){
     const loader = document.getElementById('loading');
     const text = document.getElementById('input_subject').value;
 
+
     fetch('/getsubject', {
         method: 'POST',
         headers: {
@@ -233,29 +234,24 @@ function sendSubject(){
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-
-    fetch('/getques', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ text: text })
+        console.log('First fetch Success:', data);
+    
+        return fetch('/getques', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: text })
+        });
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Success:', data);
-        popup.style.display='flex';
-        loader.style.display='none';
+        console.log('Second fetch Success:', data);
+        popup.style.display = 'flex';
+        loader.style.display = 'none';
     })
     .catch((error) => {
         console.error('Error:', error);
     });
-
-
-   
+    
 }

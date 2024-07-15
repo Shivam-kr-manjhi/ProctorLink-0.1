@@ -8,7 +8,7 @@ def insert_subject( sub ):
     global subject, questions  # Use global to modify the global variables
     subject = sub
     questions = LLM.getQuestions( sub, 5 )
-    print("question walah part is done ****************************************** " , len(questions) )
+    # print("question walah part is done ****************************************** " , len(questions) ,"->>",sub )
     for que in questions:
         print(que, "\n\n\n\n" )
 

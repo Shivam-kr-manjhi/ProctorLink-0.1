@@ -37,6 +37,8 @@ def get_score( questions, UserAnswers , number_of_questions ):
     AvgCurrectnessScore = 0
     AvgGrammerScore = 0
 
+    print("hekjenekjnfk")
+
     itr = 1
 
     for i in range( number_of_questions ):
@@ -89,3 +91,7 @@ def get_score( questions, UserAnswers , number_of_questions ):
     }
 
     return eval
+
+
+# print(get_score(["how are you?"] , [" I'm goot what about you"] , 1 ))
+

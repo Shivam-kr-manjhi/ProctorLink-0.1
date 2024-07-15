@@ -96,11 +96,13 @@ def receive_subject():
 
 @app.route('/getresult')
 def results():
+    print("this is all right")
     data = getEvaluation()
     return jsonify(data)
 
-@app.route('/getques')
+@app.route('/getques' ,methods=['POST'] )
 def waiter():
+    # print("this is all right")
     ques = get_questions()
     return jsonify(ques)
 
