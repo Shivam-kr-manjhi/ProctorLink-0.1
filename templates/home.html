@@ -33,101 +33,87 @@
     <header class="header__container">
       <div class="header__image">
         <img src="{{ url_for('static', filename='images/proctor.jpg') }}" />
+         <!-- <img src="../static/images/proctor.jpg"> -->
       </div>
       <div class="header__content">
         <h1>Single Platform For All Your <span>Proctoring</span> Needs.</h1>
         <p>
             Welcome to ProctorLy, the ultimate proctoring solution for online exams. Our state-of-the-art technology ensures the integrity of your assessments while providing a seamless and secure experience for both educators and students.
         </p>
-        <form action="/">
-          <div class="input__row">
-            <div class="input__group">
-              <span><i class="ri-search-line"></i></span>
-              <input type="text" placeholder="Search for Course" />
+          <form action="/">
+            <div class="input__row">
+              <div class="input__group">
+                <span><i class="ri-search-line"></i></span>
+                <input type="text" placeholder="Search for Course" />
+              </div>
+              <div class="input__group">
+                <span><i class="ri-arrow-down-s-line"></i></span>
+                <input type="text" placeholder="Location" />
+                <a href="/proctor"><button type="submit">Let's start</button></a>
+              </div>
             </div>
-            <div class="input__group">
-              <span><i class="ri-arrow-down-s-line"></i></span>
-              <input type="text" placeholder="Location" />
-            </div>
-          </div>
-          <button type="submit">Search Now</button>
-        </form>
+          </form>
       </div>
     </header>
 
     <div class="mid-content">
-        <div class="heading">
-            Features
+      <div class="heading">FeaTures</div>
+      <ul>
+          <li>
+              <p>Comprehensive Monitoring</p>
+              <p>Our advanced AI-driven monitoring system tracks and records all student activities during the exam, ensuring complete transparency and security.</p>
+          </li>
+          <li>
+              <p>Real-Time Alerts</p>
+              <p>Receive instant notifications of any suspicious activities, allowing you to take immediate action and maintain the integrity of your exam.</p>
+          </li>
+          <li>
+              <p>Seamless Integration</p>
+              <p>Easily integrate ProctorGuard with your existing Learning Management System (LMS), making setup and deployment quick and effortless.</p>
+          </li>
+          <li>
+              <p>Privacy-Focused</p>
+              <p>We prioritize the privacy of your students. All data is securely encrypted and stored, ensuring compliance with global privacy standards.</p>
+          </li>
+      </ul>
+  </div>
+  
+  <footer class="footer-main">
+    <div class="heading">Thanks for visiting !!</div>
+    <hr />
+    <div class="footer">
+        <div class="other-links footer-small">
+            <h2 class="footer-head">Other links :</h2>
+            <ul>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Contact us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Use</a></li>
+                <li><a href="#">Refund Policy</a></li>
+            </ul>
         </div>
-        <ul>
-            <li>
-                
-                    Comprehensive Monitoring
-                <p>
-                    Our advanced AI-driven monitoring system tracks and records all student activities during the exam, ensuring complete transparency and security. 
-                </p>
-            </li>
-            <li>
-                Real-Time Alerts
-                <p>
-                    Receive instant notifications of any suspicious activities, allowing you to take immediate action and maintain the integrity of your exam.
-                </p>
-            </li>
-            <li>Seamless Integration
-                <p>
-                    Easily integrate ProctorGuard with your existing Learning Management System (LMS), making setup and deployment quick and effortless.
-                </p>
-            </li>
-            <li>
-                Privacy-Focused
-                <p>
-We prioritize the privacy of your students. All data is securely encrypted and stored, ensuring compliance with global privacy standards.
-                </p>
-            </li>
-        </ul>
+        <div class="social footer-small">
+            <h2 class="footer-head">Social links</h2>
+            <div class="social-links">
+                <div class="facebook img-size"></div>
+                <div class="insta img-size"></div>
+                <div class="linked img-size"></div>
+            </div>
+        </div>
+        <div class="contact footer-small">
+            <h2 class="footer-head">Contact us</h2>
+            <p>support@proctorly.com</p>
+            <p>+91 88269xxxxx</p>
+        </div>
+        <div class="office footer-small">
+            <h2 class="footer-head">Registered office</h2>
+            <p>Delhi</p>
+            <p>211100xx</p>
+        </div>
     </div>
-    <footer>
-        <div className='footer-main'>
-            <div className="heading">Thanks for visiting !!</div>
-            <hr />
-            <div className="footer">
-             <div className="other-links footer-small">
-              <h2 className='footer-head' >
-                  Other links :
-                  </h2>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Contact us</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Use</a></li>
-              <li><a href="#">Refund Policy</a></li>
-             </div>
-      
-              <div className="social">
-              <h2 className='footer-head'>Social links</h2> 
-              
-             <div className="social-links footer-small">
-              <div className="facebook img-size"></div>
-              <div className="insta img-size"></div>
-              <div className="linked img-size"></div>
-             </div>
-             </div>
-      
-             <div className="contact  footer-small">
-              <h2 className='footer-head'>Contact us</h2>
-              <p>support@kseindia.com</p>
-              +91 88269xxxxx
-             </div>
-      
-             <div className="office  footer-small">
-              <h2 className='footer-head'>Registered office</h2>
-              194 shakti khand 4 indirapuram
-              <p>201014 UP</p>
-             </div>
-             </div>
-          </div>
-    </footer>
+</footer>
 
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <!-- <script src="home.js"></script>     -->
+    <!-- <script src="https://unpkg.com/scrollreveal"></script> -->
+    <script src="home.js"></script>    
   </body>
 </html>

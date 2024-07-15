@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 
 /*----------------------------------------------------------------------------*/
 .header__container {
   max-width: var(--max-width);
+  height: 90vh;
   margin: auto;
   padding: 2rem 1rem;
   display: grid;
@@ -86,14 +88,7 @@
   text-align: center;
 }
 /*----------------------------------------------------------------------------*/
-footer {
-  max-width: var(--max-width);
-  margin: auto;
-  padding: 2rem 1rem;
-  display: grid;
-  gap: 2rem;
-  text-align: center;
-}
+
 
 @media (width > 540px) {
   .nav__contact {
@@ -139,4 +134,148 @@ footer {
   .header__container button {
     width: fit-content;
   }
+}
+
+/**********************************************************************/
+
+/* Container for the features section */
+.mid-content {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: var(--max-width);
+  margin: 20px auto;
+  font-family: "Raleway", sans-serif;
+  background: rgb(53,123,188);
+background: linear-gradient(122deg, rgba(53,123,188,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+/* Heading style */
+.mid-content .heading {
+  font-size: 50px;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 10px;
+  color: white;
+}
+
+/* List style */
+.mid-content ul {
+  list-style: none;
+  padding: 5px;
+}
+
+.mid-content ul li {
+  background-color: #fff;
+  margin-bottom: 25px;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mid-content ul li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* List item title style */
+.mid-content ul li p:first-child {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #0073e6;
+}
+
+/* List item paragraph style */
+.mid-content ul li p {
+  margin: 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+
+/**********************/
+/* Footer main container */
+/* Footer main container */
+.footer-main {
+  padding: 20px;
+  border-top: 5px solid var(--primary-color);
+  font-family: Arial, sans-serif;
+  color: #333;
+  max-width: var(--max-width);
+  margin: auto;
+  border-radius: 5px;
+}
+
+/* Footer heading style */
+.footer-main .heading {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Footer horizontal rule style */
+.footer-main hr {
+  border: none;
+  border-top: 1px solid #009688;
+  margin: 20px 0;
+}
+
+/* Footer container */
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: left;
+}
+
+/* Footer section heading style */
+.footer-head {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Footer small container */
+.footer-small {
+  flex: 1 1 200px;
+  margin: 10px;
+}
+
+/* Other links style */
+.other-links li {
+  list-style: none;
+  margin: 5px 0;
+}
+
+.other-links a {
+  text-decoration: none;
+  color: #009688;
+  transition: color 0.3s ease;
+}
+
+.other-links a:hover {
+  color: #00796B;
+}
+
+/* Social links container */
+.social-links {
+  display: flex;
+  gap: 10px;
+}
+
+.img-size {
+  width: 30px;
+  height: 30px;
+  background-color: #009688; /* Placeholder for social media icons */
+  border-radius: 50%;
+}
+
+/* Contact and office details style */
+.contact p, .office p {
+  margin: 5px 0;
+  color: #555;
 }

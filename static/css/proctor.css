@@ -6,6 +6,9 @@
     --blue3 :#3572EF;
     --blue4 :#050C9C;
 }
+body{
+    font-family: "Raleway", sans-serif;
+}
 .container {
     /* width: 80%; */
     /* max-width: 600px; */
